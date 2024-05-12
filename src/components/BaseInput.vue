@@ -7,7 +7,11 @@
         class="field"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
+        :aria-describedby="error ? `${uuid}-error` : null"
     />
+    <p v-if="error" class="errorMessage" :id="`${uuid}-error`">
+        {{ error }}
+    </p>
 </template>
 
 <script>
@@ -21,6 +25,10 @@ export default {
         },
         modelValue: {
             type: [String, Number],
+            default: ''
+        },
+        error: {
+            type: String,
             default: ''
         }
     },
