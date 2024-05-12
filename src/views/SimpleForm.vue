@@ -2,7 +2,7 @@
     <div>
         <h1>Create an event</h1>
         <form>
-            <BaseSelect :options="categories" v-mode="event.category" label="Select a category" />
+            <BaseSelect :options="categories" v-model="event.category" label="Select a category" />
 
             <h3>Name & describe your event</h3>
 
