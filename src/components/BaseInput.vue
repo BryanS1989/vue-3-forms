@@ -1,6 +1,7 @@
 <template>
-    <label>{{ label }}</label>
+    <label :id="uuid">{{ label }}</label>
     <input
+        :id="uuid"
         v-bind="$attrs"
         :placeholder="label"
         class="field"
@@ -10,6 +11,8 @@
 </template>
 
 <script>
+import UniqueID from '@/helper/UniqueId.js';
+
 export default {
     props: {
         label: {
@@ -20,6 +23,12 @@ export default {
             type: [String, Number],
             default: ''
         }
+    },
+    setup() {
+        const uuid = UniqueID().getID();
+        return {
+            uuid
+        };
     }
 };
 </script>
