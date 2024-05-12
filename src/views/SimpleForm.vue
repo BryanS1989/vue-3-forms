@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Create an event</h1>
-        <form>
+        <form @submit.prevent="sendForm">
             <BaseSelect :options="categories" v-model="event.category" label="Select a category" />
 
             <h3>Name & describe your event</h3>
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import BaseInput from '@/components/BaseInput.vue';
 import BaseSelect from '@/components/BaseSelect.vue';
 import BaseCheckbox from '@/components/BaseCheckbox.vue';
@@ -73,6 +75,22 @@ export default {
         BaseSelect,
         BaseCheckbox,
         BaseRadioGroup
+    },
+    methods: {
+        sendForm() {
+            console.log('Form submitted');
+            axios
+                .post(
+                    'https://my-json-server.typicode.com/BryanS1989/vue-3-forms/events',
+                    this.event
+                )
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     }
 };
 </script>
